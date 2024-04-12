@@ -15,8 +15,8 @@ for _ in range(0,m):
         graph[a].append(b)
 pre={}
 for _ in range(n+1):
-    graph[_]=list(set(graph[_]))#去重
-    pre[_]=0#前置节点dict
+    graph[_]=list(set(graph[_]))
+    pre[_]=0
 
 def BFS(graph,node):
     queue=[]
@@ -24,13 +24,13 @@ def BFS(graph,node):
     queue.append(node) 
     seen.add(node)
     
-    while (len(queue)>0) :         #当队列里还有东西时
-        ver =  queue.pop(0)        #取出队头元素
-        notes = graph[ver]         #查看grep里面的key,对应的邻接点
-        for i in notes:            #遍历邻接点
-            if i not in seen:      #如果该邻接点还没出现过
-                queue.append(i)    #存入queue
-                seen.add(i)        #存入集合
+    while (len(queue)>0) :       
+        ver =  queue.pop(0)        
+        notes = graph[ver]       
+        for i in notes:            
+            if i not in seen:      
+                queue.append(i)    
+                seen.add(i)        
                 pre[i]=ver
     return pre
 

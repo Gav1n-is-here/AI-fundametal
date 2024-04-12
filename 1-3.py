@@ -5,8 +5,8 @@ char=input().split(' ')
 n=int(char[0])
 m=int(char[1])
 graph=[]
-dist=[]     #到i的最短距离
-st=[]       #最短距离已经确定的集合
+dist=[]    
+st=[]       #已确定
 graph=[[0 for i in range(n)] for j in range(n)]
 for _ in range(n):
     dist.append(10000)
