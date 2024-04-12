@@ -5,9 +5,9 @@
 using namespace std;
 const int end = 123456780;
 
-map <int, int> state; //1,2
+map <int, int> state;
 map <int, int> ans;
-queue <int> q1, q2; //q1前搜q2后搜 
+queue <int> q1, q2; 
 int dx[4] = {-1, 0, 1, 0};
 int dy[4] = {0, 1, 0, -1};
 int cnt=0, mat[3][3], zx, zy;
@@ -52,12 +52,12 @@ void dbfs(int s) {
 			if(nx >= 0 && nx < 3 && ny >= 0 && ny < 3) {
 				swap(mat[zx][zy], mat[nx][ny]);
 				num = toInt();
-				if(!ans.count(num)) {  //未被扩展过
+				if(!ans.count(num)) {
 					ans[num] = ans[t] + 1;
-					state[num] = state[t]; //更新
+					state[num] = state[t];
 					if(flag) q1.push(num);
 					else q2.push(num);
-				}else if(state[t] + state[num] == 3){ //搜索重叠找到路径 
+				}else if(state[t] + state[num] == 3){
 					cnt = ans[t] + ans[num];
 					return;
 				}
@@ -70,7 +70,7 @@ void dbfs(int s) {
 int inversionCount(const std::string& str) {
     int count = 0;
     for (size_t i = 0; i < str.size(); ++i) {
-        if (str[i] == '0') continue; // Ignore digit 0
+        if (str[i] == '0') continue;
         for (size_t j = i + 1; j < str.size(); ++j) {
             if (str[j] != '0' && str[j] < str[i]) {
                 ++count;
@@ -81,8 +81,8 @@ int inversionCount(const std::string& str) {
 }
 
 int main() {
-	std::string input;
-    std::getline(std::cin, input);
+	string input;
+    getline(cin, input);
     input.erase(std::remove(input.begin(), input.end(), ' '), input.end());
     std::replace(input.begin(), input.end(), 'x','0'), input.end();
 	int ju=inversionCount(input);
