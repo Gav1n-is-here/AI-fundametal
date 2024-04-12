@@ -8,18 +8,13 @@
 
 using namespace std;
 
-const int INF = 1e9;
-
 struct State {
     int board[3][3];
-    int x, y; // 'x'坐标
-
+    int x, y; 
     State() {
         x = y = 0;
         memset(board, 0, sizeof(board));
     }
-
-    // hash
     size_t hash() const {
         size_t h = 0;
         for (int i = 0; i < 3; ++i) {
@@ -29,7 +24,6 @@ struct State {
         }
         return h;
     }
-
     bool operator==(const State& other) const {
         return memcmp(board, other.board, sizeof(board)) == 0;
     }
@@ -44,9 +38,7 @@ struct StateHash {
 struct HeapNode {
     State state;
     int steps;
-
     HeapNode(const State& s, int st) : state(s), steps(st) {}
-
     bool operator>(const HeapNode& other) const {
         return steps > other.steps;
     }
@@ -124,7 +116,7 @@ int main() {
             string cell;
             ss >> cell;
             if (cell == "x") {
-                start.board[i][j] = 0; // 'x'->0
+                start.board[i][j] = 0;
                 start.x = i;
                 start.y = j;
             } else {
