@@ -7,19 +7,19 @@ const int end = 123456780;
 
 map <int, int> state;
 map <int, int> ans;
-queue <int> q1, q2; 
+queue <int> q1, q2;
 int dx[4] = {-1, 0, 1, 0};
 int dy[4] = {0, 1, 0, -1};
 int cnt=0, mat[3][3], zx, zy;
 
-inline int toInt() { 
+int toInt() { 
 	int now = 0;
 	for(int i = 0; i < 3; i++) 
 		for(int j = 0; j < 3; j++)
 			now = now * 10 + mat[i][j];
 	return now;
 }
-inline void toMatrix(int s) { 
+void toMatrix(int s) { 
 	int div = 100000000;
 	for(int i = 0; i < 3; i++)
 		for(int j = 0; j < 3; j++) {
@@ -29,8 +29,8 @@ inline void toMatrix(int s) {
 		}
 }
 
-void dbfs(int s) {
-	if(s == ::end) return; 
+void bfs(int s) {
+	if(s == ::end) return ; 
 	bool flag;
 	state[s] = 1, state[::end] = 2;
 	ans[s] = 0, ans[::end] = 1; 
@@ -39,9 +39,11 @@ void dbfs(int s) {
 		flag = 0;
 		int t;
 		if(q1.size() > q2.size()) {
-			t = q2.front(), q2.pop();
+			t = q2.front();
+			 q2.pop();
 		}else {
-			t = q1.front(), q1.pop();
+			t = q1.front();
+			q1.pop();
 			flag = 1;
 		}
 		toMatrix(t);
@@ -55,8 +57,10 @@ void dbfs(int s) {
 				if(!ans.count(num)) {
 					ans[num] = ans[t] + 1;
 					state[num] = state[t];
+
 					if(flag) q1.push(num);
 					else q2.push(num);
+					
 				}else if(state[t] + state[num] == 3){
 					cnt = ans[t] + ans[num];
 					return;
@@ -91,7 +95,7 @@ int main() {
 		return 0;
 	}
     int n = std::stoi(input);
-	dbfs(n);	
+	bfs(n);	
 	cout << cnt << "\n";
 	return 0;
 } 
