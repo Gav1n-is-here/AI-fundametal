@@ -5,18 +5,6 @@ string mp = "urdl";
 int dx[] = {-1, 0, 1, 0};
 int dy[] = {0, 1, 0, -1};
 
-bool check(string &s) {
-    int cnt = 0;
-    for(int i = 0; i < 9; i++) {
-        if(s[i] != 'x') {
-            for(int j = 0; j < i; j++) {
-                if(s[j] != 'x' && s[j] > s[i]) 
-                    cnt ^= 1;
-            }
-        }
-    }
-    return !cnt;
-}
 
 int Manhattan_Distance(string &s) {
     int ret = 0;
