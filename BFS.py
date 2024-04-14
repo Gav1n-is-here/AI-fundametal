@@ -72,7 +72,7 @@ if path_bfs:
                 maze[i][j] = 2
 
     maze[n - 1][m - 1] = 2
-    print(maze)
+    # print(maze)
     visualize_maze_with_path(maze, path_bfs)
 else:
     print("No path found.")
